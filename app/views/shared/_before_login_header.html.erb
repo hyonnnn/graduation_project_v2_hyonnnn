@@ -1,15 +1,21 @@
+<!-- app/views/shared/_before_login_header.html.erb -->
 <header>
-  <nav class="navbar navbar-expand-lg navigation navbar-light bg-light">
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto main-nav align-items-center">
-        <li class="nav-item">
-          <%= link_to 'Login', new_user_session_path, class: "nav-link" %>
-        </li>
-        <li class="nav-item">
-          <%= link_to 'Sign Up', new_user_registration_path, class: "nav-link" %>
-        </li>
-      </ul>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light" style="display: flex; justify-content: space-between; align-items: center; padding: 10px 20px;">
+    
+    <!-- 左上：アプリ名 -->
+    <div style="background-color: pink; padding: 5px 10px; font-weight: bold; font-size: 1.2rem;">
+      元気な産声聞かせてね
     </div>
+
+    <!-- 右上：ログイン・新規登録リンク -->
+    <ul class="navbar-nav" style="display: flex; gap: 15px; list-style: none; margin: 0; padding: 0;">
+      <li class="nav-item">
+        <%= link_to 'ログイン', new_user_session_path, class: "nav-link" %>
+      </li>
+      <li class="nav-item">
+        <%= link_to '新規登録', new_user_registration_path, class: "nav-link" %>
+      </li>
+    </ul>
+
   </nav>
 </header>
-

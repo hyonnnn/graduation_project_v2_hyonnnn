@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
+  get 'home/index'
   # Devise用ルート
   devise_for :users
 
   # アプリケーションのルート
-  root to: 'tasks#index'
+  root to: 'home#index'
 
   # リソースルート
   resources :tasks
