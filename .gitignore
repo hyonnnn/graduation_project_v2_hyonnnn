@@ -1,0 +1,20 @@
+# Logs
+/log/*
+
+# Temp files
+/tmp/*
+
+# Ignore system files
+.DS_Store
+
+# Bundler
+/.bundle
+
+# Node modules
+/node_modules
+
+# Byebug history
+.byebug_history
+
+# Credentials (optional)
+config/credentials/*.key
