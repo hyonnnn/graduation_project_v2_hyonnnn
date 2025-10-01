@@ -1,22 +1,27 @@
-<p>
-  <strong>Title:</strong>
-  <%= @task.title %>
-</p>
+<div class="container mt-5">
+  <h1>タスク詳細</h1>
 
-<p>
-  <strong>Content:</strong>
-  <%= @task.content %>
-</p>
+  <p>
+    <strong>タイトル:</strong>
+    <%= @task[:title] %>
+  </p>
 
-<p>
-  <strong>Status:</strong>
-  <%= @task.status %>
-</p>
+  <p>
+    <strong>内容:</strong>
+    <%= @task[:content] %>
+  </p>
 
-<p>
-  <strong>Deadline:</strong>
-  <%= @task.deadline.strftime('%Y/%-m/%-d %-H:%-M') if @task.deadline? %>
-</p>
+  <p>
+    <strong>ステータス:</strong>
+    <%= @task[:status] %>
+  </p>
 
-<%= link_to 'Edit', edit_task_path(@task) %> |
-<%= link_to 'Back', tasks_path %>
+  <% if @task[:deadline].present? %>
+    <p>
+      <strong>期限:</strong>
+      <%= @task[:deadline].strftime('%Y/%-m/%-d %-H:%-M') %>
+    </p>
+  <% end %>
+
+  <%= link_to 'タスク一覧に戻る', tasks_path, class: 'btn btn-secondary mt-3' %>
+</div>

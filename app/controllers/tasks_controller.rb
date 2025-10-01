@@ -1,54 +1,23 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: %i[show edit update destroy]
-  before_action :verify_access, only: %i[edit update destroy]
-  skip_before_action :require_login, only: %i[index show]
+  before_action :authenticate_user!  # Deviseのログイン必須コールバック
+
+  # 表示するタスクを固定で定義
+  FIXED_TASKS = [
+    { id: 1, title: "天気がいいのでお散歩気分", content: "外で軽く散歩する", status: "todo" },
+    { id: 2, title: "家でスクワット", content: "自宅でスクワット20回×3セット", status: "todo" },
+    { id: 3, title: "トイレ掃除でお家をきれいに", content: "トイレを掃除して清潔に保つ", status: "todo" },
+    { id: 4, title: "カロリー消費を目指して階段上り下り", content: "階段の上り下りでカロリー消費", status: "todo" }
+  ]
 
   def index
-    @tasks = Task.all
+    # アプリ側で固定タスクを配列として渡す
+    @tasks = FIXED_TASKS
   end
 
-  def show; end
-
-  def new
-    @task = Task.new
-  end
-
-  def edit; end
-
-  def create
-    @task = current_user.tasks.build(task_params)
-
-    if @task.save
-      redirect_to @task, notice: 'Task was successfully created.'
-    else
-      render :new
-    end
-  end
-
-  def update
-    if @task.update(task_params)
-      redirect_to @task, notice: 'Task was successfully updated.'
-    else
-      render :edit
-    end
-  end
-
-  def destroy
-    @task.destroy
-    redirect_to tasks_url, notice: 'Task was successfully destroyed.'
-  end
-
-  private
-
-  def set_task
-    @task = Task.find(params[:id])
-  end
-
-  def task_params
-    params.require(:task).permit(:title, :content, :status, :deadline)
-  end
-
-  def verify_access
-    redirect_to root_url, alert: 'Forbidden access.' unless current_user.my_object?(@task)
+  def show
+    # 選択したタスクを取得
+    task_id = params[:id].to_i
+    @task = FIXED_TASKS.find { |t| t[:id] == task_id }
+    redirect_to tasks_path, alert: "タスクが見つかりません" unless @task
   end
 end
