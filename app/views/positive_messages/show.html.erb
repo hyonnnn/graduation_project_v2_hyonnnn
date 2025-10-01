@@ -1,0 +1,20 @@
+<div class="container text-center mt-5">
+  <h1>おめでとう！</h1>
+  <p class="message mt-3"><%= @message %></p>
+  <%= link_to "タスク一覧に戻る", user_tasks_path, class: "btn btn-secondary mt-4" %>
+</div>
+
+<style>
+  .message {
+    font-size: 24px;
+    color: #ff69b4;
+    font-weight: bold;
+  }
+  .btn {
+    background-color: #f0f0f0;
+    color: #333;
+  }
+  .btn:hover {
+    background-color: #dcdcdc;
+  }
+</style>
