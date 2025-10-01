@@ -1,5 +1,7 @@
 class UserSessionsController < ApplicationController
-  skip_before_action :require_login
+  # :require_login は存在しないので raise: false を付けるか、削除
+  # skip_before_action :require_login, raise: false
+  skip_before_action :authenticate_user!, only: [:new, :create]  # ログインページは認証不要
 
   def new; end
 
