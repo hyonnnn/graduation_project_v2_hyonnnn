@@ -2,12 +2,16 @@
   <h1 class="mb-4">体を動かすことは安産につながります。</h1>
   <h1 class="mb-4">今日はどんな気分ですか？</h1>
 
-  <div class="task-list w-50"> <!-- 幅50%にして中央寄せ -->
+  <div class="task-list w-50">
     <% @tasks.each do |task| %>
-      <div class="task-item mb-3"> 
-        <%= link_to task_path(task[:id]), class: "task-button d-block text-center p-3 rounded shadow-sm" do %>
-          <%= task[:title] %>
-        <% end %>
+      <div class="task-item mb-3">
+        <%# タスク選択ボタン: select_user_tasks_path に task_id を送る %>
+        <%= button_to task[:title],
+            select_user_tasks_path(task_id: task[:id]),
+            method: :post,
+            class: "task-button d-block text-center p-3 rounded shadow-sm" %>
+
+        <p class="mt-1"><%= task[:content] %></p>
       </div>
     <% end %>
   </div>
@@ -15,13 +19,13 @@
 
 <style>
   .task-button {
-    background-color: #E6E6FA; /* 薄紫 */
+    background-color: #E6E6FA;
     color: #000000;
     border: 1px solid #C8C8FF;
     text-decoration: none;
     font-weight: bold;
     font-size: 20px;
-    width: 100%;  /* 親幅いっぱいに広げる */
+    width: 100%;
     transition: background-color 0.2s;
   }
 

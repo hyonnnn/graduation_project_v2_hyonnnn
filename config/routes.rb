@@ -13,5 +13,8 @@ Rails.application.routes.draw do
   resources :users, only: [:index, :show, :edit, :update, :destroy] # 必要に応じてアクション追加
 
   # ユーザーごとのタスク表示・状態更新用
-  resources :user_tasks, only: [:index, :update]
+  resources :user_tasks, only: [:index, :show, :update] do
+    # ユーザーがタスクを選択するアクション（collectionで追加）
+    post 'select', on: :collection
+  end
 end

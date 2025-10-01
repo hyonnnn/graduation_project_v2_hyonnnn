@@ -6,7 +6,8 @@ class User < ApplicationRecord
          :confirmable
 
   # アソシエーション
-  has_many :tasks, dependent: :destroy
+  has_many :user_tasks
+  has_many :task_templates, through: :user_tasks
 
   # 独自メソッド
   def my_object?(object)

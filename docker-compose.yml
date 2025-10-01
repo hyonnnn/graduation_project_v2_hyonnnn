@@ -8,4 +8,7 @@ services:
       - .:/myapp
     ports:
       - "3001:3000"
-    command: bash -c "bundle install && rails server -b 0.0.0.0"
+    environment:
+      - RAILS_MASTER_KEY=9df94298b649dd58a52903e81a8dae77
+    tty: true
+    command: bash -c "bin/rails server -b 0.0.0.0 -p 3000"

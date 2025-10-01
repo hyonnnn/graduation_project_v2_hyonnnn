@@ -18,3 +18,5 @@
 
 # Credentials (optional)
 config/credentials/*.key
+
+/config/master.key

@@ -1,0 +1,90 @@
+<h1>進行状況</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>ステータス</th>
+      <th>更新</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @user_tasks.each do |user_task| %>
+      <tr>
+        <!-- ステータス選択 -->
+        <td>
+          <%= form_with(model: user_task, local: true) do |f| %>
+            <%= f.select :status, [
+                  ["まだ開始していない", "not_started"],
+                  ["開始", "in_progress"],
+                  ["完了", "completed"]
+                ], selected: user_task.status %>
+        </td>
+
+        <!-- 更新ボタン -->
+        <td>
+            <%= f.submit "更新" %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<div class="back-button-container">
+  <%= link_to "タスク一覧に戻る", tasks_path, class: "back-button" %>
+</div>
+
+<style>
+  table {
+    width: 60%;
+    border-collapse: collapse;
+    margin: 20px auto;
+  }
+
+  th, td {
+    border: 1px solid #ccc;
+    padding: 8px 12px;
+    text-align: left;
+  }
+
+  th {
+    background-color: #f0f0f0;
+  }
+
+  select {
+    padding: 4px 6px;
+  }
+
+  input[type="submit"] {
+    padding: 4px 10px;
+    background-color: #E6E6FA;
+    border: 1px solid #C8C8FF;
+    cursor: pointer;
+  }
+
+  input[type="submit"]:hover {
+    background-color: #D8BFD8;
+  }
+
+  .back-button-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+  }
+
+  .back-button {
+    padding: 8px 14px;
+    background-color: #d3d3d3; /* 薄いグレー */
+    border: 1px solid #b0b0b0;
+    text-decoration: none;
+    color: #000;
+    font-weight: bold;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+  }
+
+  .back-button:hover {
+    background-color: #c0c0c0;
+    color: #000;
+  }
+</style>

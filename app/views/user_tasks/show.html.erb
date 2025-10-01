@@ -1,0 +1,31 @@
+<h1>タスク詳細</h1>
+
+<%= form_with(model: @user_task, local: true) do |f| %>
+  <!-- タイトル表示 -->
+  <div class="mb-3">
+    <%= f.label :title, "タスクタイトル", class: "form-label" %><br>
+    <%= f.text_field :title, value: @user_task.task_template.title, disabled: true, class: "form-control" %>
+  </div>
+
+  <!-- 内容表示 -->
+  <div class="mb-3">
+    <%= f.label :content, "内容", class: "form-label" %><br>
+    <%= f.text_area :content, value: @user_task.task_template.content, disabled: true, class: "form-control", rows: 3 %>
+  </div>
+
+  <!-- ステータス選択 -->
+  <div class="mb-3">
+    <%= f.label :status, "ステータス", class: "form-label" %><br>
+    <%= f.select :status,
+          [["まだ開始していない", "not_started"],
+           ["開始済み", "in_progress"],
+           ["達成済み", "completed"]],
+          { selected: @user_task.status },
+          class: "form-select" %>
+  </div>
+
+  <!-- 更新ボタン -->
+  <div class="mb-3">
+    <%= f.submit "更新", class: "btn btn-success" %>
+  </div>
+<% end %>

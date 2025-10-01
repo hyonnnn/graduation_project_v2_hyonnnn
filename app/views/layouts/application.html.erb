@@ -10,14 +10,25 @@
   </head>
 
   <body>
-    <p id="notice"><%= notice %></p>
+    <!-- フラッシュメッセージ -->
     <p id="alert"><%= alert %></p>
 
-    <% if user_signed_in? %>
-      <%= render "shared/header" %>
-    <% else %>
-      <%= render "shared/before_login_header" %>
-    <% end %>
+    <!-- ヘッダー -->
+    <header class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container">
+        <div class="d-flex w-100">
+          <div class="ms-auto">
+            <% if user_signed_in? %>
+              <%= link_to 'ホーム', root_path, class: 'btn btn-outline-primary me-2' %>
+              <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'btn btn-outline-danger' %>
+            <% else %>
+              <%= link_to 'ログイン', new_user_session_path, class: 'btn btn-outline-primary me-2' %>
+              <%= link_to 'サインアップ', new_user_registration_path, class: 'btn btn-outline-success' %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </header>
 
     <%= yield %>
   </body>

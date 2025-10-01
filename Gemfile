@@ -10,7 +10,7 @@ gem 'uglifier'
 gem 'coffee-rails'
 gem 'bootsnap', require: false
 gem 'devise'
-gem 'concurrent-ruby','1.3.4'
+gem 'concurrent-ruby', '1.3.4'
 
 # 開発・テスト環境
 group :development, :test do
@@ -31,6 +31,7 @@ group :development do
   gem 'pry-doc'
   gem 'rubocop'
   gem 'rails_best_practices'
+  gem 'letter_opener'
 end
 
 # Windows/JRuby 用

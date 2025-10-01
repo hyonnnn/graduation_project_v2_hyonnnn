@@ -1,0 +1,52 @@
+<!-- app/views/home/index.html.erb -->
+<main style="padding: 20px;">
+  <h1>ようこそ</h1>
+
+  <div class="container d-flex justify-content-center flex-column align-items-center">
+    <div class="mb-5 p-4 bg-light rounded shadow-sm" style="max-width: 800px; text-align: left;">
+      <p style="font-size: 30px; margin-bottom: 20px;">
+        妊婦さんが毎日前向きに過ごせるよう
+      </p>
+      <p style="font-size: 30px; margin-bottom: 20px;">
+        日々のタスクを提案します。
+      </p>
+      <p style="font-size: 30px; margin-bottom: 20px;">
+        タスク完了後には赤ちゃんからのメッセージが！
+      </p>
+      <p style="font-size: 30px;">
+        自然にモチベーションを維持し、
+      </p>
+      <p style="font-size: 30px;">
+        安産に向けた健康的な生活習慣をサポートします。
+      </p>
+    </div>
+
+    <div style="margin-top: 30px; text-align: center;">
+      <% if user_signed_in? %>
+        <%= link_to "始める", tasks_path, class: "btn btn-start" %>
+      <% else %>
+        <%= link_to "始める", new_user_session_path, class: "btn btn-start" %>
+      <% end %>
+    </div>
+  </div>
+</main>
+
+<style>
+.btn-start {
+  background-color: #ff69b4; /* ピンク色 */
+  color: white;
+  font-size: 1.5rem;
+  padding: 12px 40px;
+  border-radius: 8px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  transition: background-color 0.3s ease;
+}
+
+.btn-start:hover {
+  background-color: #ff1493; /* 濃いピンクにホバー */
+  color: white;
+  text-decoration: none;
+}
+</style>
