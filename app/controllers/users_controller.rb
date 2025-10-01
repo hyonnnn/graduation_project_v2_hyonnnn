@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[show edit update destroy]
-  skip_before_action :require_login, only: %i[new create]
+  skip_before_action :authenticate_user!, only: %i[new create]
   before_action :forbid_invalid_access, only: %i[edit update destroy]
 
   def index
