@@ -1,35 +1,27 @@
-class UsersController < ApplicationController
-  # 新規登録は認証不要
+# app/controllers/user_sessions_controller.rb
+class UserSessionsController < ApplicationController
+  # 新規登録（ログインページ）は認証不要
   skip_before_action :authenticate_user!, only: [:new, :create]
 
-  # ユーザー一覧（ログイン必須）
-  def index
-    @users = User.all
-  end
-
-  # ユーザー詳細（ログイン必須）
-  def show
-    @user = User.find(params[:id])
-  end
-
-  # 新規ユーザー登録ページ
+  # ログインページ
   def new
-    @user = User.new
   end
 
-  # ユーザー作成処理
+  # ログイン処理
   def create
-    @user = User.new(user_params)
-    if @user.save
-      redirect_to root_path, notice: 'User created successfully'
+    @user = User.find_by(email: params[:email])
+    if @user&.valid_password?(params[:password])
+      sign_in(@user)
+      redirect_to root_path, notice: 'Login successful'
     else
+      flash.now[:alert] = 'Login failed'
       render :new
     end
   end
 
-  private
-
-  def user_params
-    params.require(:user).permit(:email, :password, :password_confirmation)
+  # ログアウト処理
+  def destroy
+    sign_out(current_user)
+    redirect_to root_path, notice: 'Logged out'
   end
 end
