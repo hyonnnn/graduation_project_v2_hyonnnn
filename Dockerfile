@@ -2,22 +2,23 @@
 FROM ruby:3.2.3
 
 # 必要なパッケージをインストール
-RUN apt-get update -qq && apt-get install -y build-essential libsqlite3-dev nodejs
+RUN apt-get update -qq && apt-get install -y build-essential libsqlite3-dev nodejs yarn
 
-# 作業ディレクトリを作成
+# 作業ディレクトリ
 WORKDIR /myapp
 
-# Gemfile と Gemfile.lock をコピー
+# Gemfile をコピーしてインストール
 COPY Gemfile* ./
+RUN gem install bundler && bundle install --without development test
 
-# Bundlerをインストールしてgemをインストール
-RUN gem install bundler && bundle install
-
-# アプリのコードをコピー
+# アプリケーションコードをコピー
 COPY . .
 
-# ポート3000を開放
+# 本番用アセットプリコンパイル
+RUN RAILS_ENV=production bundle exec rails assets:precompile
+
+# ポートを開放
 EXPOSE 3000
 
-# コンテナ起動時に実行するコマンド
-CMD ["rails", "server", "-b", "0.0.0.0"]
+# サーバ起動
+CMD ["rails", "server", "-b", "0.0.0.0", "-p", "3000"]
