@@ -20,3 +20,5 @@
 config/credentials/*.key
 
 /config/master.key
+
+.env

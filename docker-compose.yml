@@ -1,14 +1,12 @@
 services:
   web:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    build: .
     working_dir: /myapp
     volumes:
       - .:/myapp
     ports:
       - "3001:3000"
-    environment:
-      - RAILS_MASTER_KEY=9df94298b649dd58a52903e81a8dae77
+    env_file:
+      - .env
     tty: true
     command: bash -c "bin/rails server -b 0.0.0.0 -p 3000"
