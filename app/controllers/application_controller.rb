@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:index]
 
   # ログイン後の遷移先をタスク一覧に設定
   def after_sign_in_path_for(resource)
