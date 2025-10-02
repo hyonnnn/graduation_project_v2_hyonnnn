@@ -14,6 +14,9 @@ gem 'sass-rails'
 gem 'uglifier'
 gem 'coffee-rails'
 
+# Rails 7 用 JavaScript 管理
+gem 'importmap-rails'
+
 # 起動高速化
 gem 'bootsnap', require: false
 
