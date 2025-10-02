@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'from@example.com'
+  default from: 'no-reply@yourdomain.com'  # SendGrid で認証済みメール
   layout 'mailer'
 end
