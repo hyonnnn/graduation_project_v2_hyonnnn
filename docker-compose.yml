@@ -1,4 +1,15 @@
 services:
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: hyonnnn_user
+      POSTGRES_PASSWORD: your_actual_password_here
+      POSTGRES_DB: hyonnnn
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
   web:
     build: .
     working_dir: /myapp
@@ -8,5 +19,10 @@ services:
       - "3001:3000"
     env_file:
       - .env
+    depends_on:
+      - db
     tty: true
     command: bash -c "bin/rails server -b 0.0.0.0 -p 3000"
+
+volumes:
+  db-data:
