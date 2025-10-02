@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   # Devise modules
   # 他に必要なモジュールがあれば追加できます
-  devise :recoverable
+  devise :database_authenticatable, :validatable, :recoverable
 
   # アソシエーション
   has_many :user_tasks
