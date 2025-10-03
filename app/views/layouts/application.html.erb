@@ -21,11 +21,10 @@
           <div class="ms-auto">
             <% if user_signed_in? %>
               <%= link_to 'ホーム', root_path, class: 'btn btn-outline-primary me-2' %>
-              <%= link_to 'ログアウト', destroy_user_session_path, 
-                  data: { 
-                    "turbo-method": "delete"
-                  }, 
-                  class: 'logout-link' %>
+              <%= button_to 'ログアウト', destroy_user_session_path, 
+                  method: :delete, 
+                  class: 'btn btn-link',
+                  style: 'border: none; background: none; color: inherit; text-decoration: underline;' %>
             <% else %>
               <%= link_to 'ログイン', new_user_session_path, class: 'btn btn-outline-primary me-2' %>
               <%= link_to 'サインアップ', new_user_registration_path, class: 'btn btn-outline-success' %>
