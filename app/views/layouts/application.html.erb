@@ -21,7 +21,7 @@
           <div class="ms-auto">
             <% if user_signed_in? %>
               <%= link_to 'ホーム', root_path, class: 'btn btn-outline-primary me-2' %>
-              <%= link_to 'ログアウト', logout_path, data: { turbo_method: :delete } %>
+              <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'btn btn-outline-danger me-2' %>
             <% else %>
               <%= link_to 'ログイン', new_user_session_path, class: 'btn btn-outline-primary me-2' %>
               <%= link_to 'サインアップ', new_user_registration_path, class: 'btn btn-outline-success' %>
