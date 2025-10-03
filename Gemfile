@@ -22,6 +22,7 @@ gem 'bootsnap', require: false
 
 # 認証
 gem 'devise'
+gem 'devise-i18n'
 
 # 並列処理
 gem 'concurrent-ruby', '1.3.4'
