@@ -6,8 +6,12 @@ class ApplicationController < ActionController::Base
     tasks_path
   end
 
-  # ログアウト後の遷移先をホームページ（トップページ）に設定
+  # ログアウト後の遷移先を環境ごとに設定
   def after_sign_out_path_for(resource_or_scope)
-    root_path
+    if Rails.env.production?
+      "https://graduation-project-v2-hyonnnn.onrender.com/"
+    else
+      root_path # 開発環境はローカルのトップページ
+    end
   end
 end
