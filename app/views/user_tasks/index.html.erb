@@ -3,13 +3,15 @@
 <table>
   <thead>
     <tr>
+      <th>タスク名</th>
       <th>ステータス</th>
-      <th>更新</th>
     </tr>
   </thead>
   <tbody>
     <% @user_tasks.each do |user_task| %>
       <tr>
+        <!-- タスク名表示 -->
+        <td><%= user_task.task_template.name %></td>
         <!-- ステータス選択 -->
         <td>
           <%= form_with(model: user_task, local: true) do |f| %>
