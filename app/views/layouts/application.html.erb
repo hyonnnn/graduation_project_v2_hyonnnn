@@ -24,7 +24,8 @@
               <%= button_to 'ログアウト', destroy_user_session_path, 
                   method: :delete, 
                   class: 'btn btn-link',
-                  style: 'border: none; background: none; color: inherit; text-decoration: underline;' %>
+                  style: 'border: none; background: none; color: inherit; text-decoration: underline;',
+                  form: { style: 'display: inline;' } %>
             <% else %>
               <%= link_to 'ログイン', new_user_session_path, class: 'btn btn-outline-primary me-2' %>
               <%= link_to 'サインアップ', new_user_registration_path, class: 'btn btn-outline-success' %>
