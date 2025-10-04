@@ -11,4 +11,7 @@ class User < ApplicationRecord
   def my_object?(object)
     object.user_id == id
   end
+
+  # メールアドレスの一意性バリデーション（エラーメッセージ変更）
+  validates :email, uniqueness: { message: "は使用できません" }
 end
