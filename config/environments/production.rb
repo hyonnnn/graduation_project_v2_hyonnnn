@@ -76,4 +76,11 @@ Rails.application.configure do
   config.active_support.deprecation = :log
   config.active_support.disallowed_deprecation = :raise
   config.active_support.disallowed_deprecation_warnings = []
+
+  # ------------------------------
+  # 国際化設定
+  # ------------------------------
+  config.i18n.default_locale = :ja
+  config.i18n.available_locales = [:ja, :en]
+  config.i18n.fallbacks = [I18n.default_locale]
 end
