@@ -17,7 +17,7 @@ class UserTasksController < ApplicationController
     end
 
     if current_user.user_tasks.exists?(task_template_id: task_template.id)
-      redirect_to user_tasks_path, alert: "すでに選択済みのタスクです"
+      redirect_to user_tasks_path
       return
     end
 
