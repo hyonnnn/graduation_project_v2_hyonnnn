@@ -1,0 +1,4 @@
+ja:
+  errors:
+    messages:
+      already_taken: "は使用できません"
